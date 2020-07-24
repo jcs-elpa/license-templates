@@ -116,7 +116,7 @@
     (setq license-templates--names (reverse license-templates--names)))
   license-templates--names)
 
-(defun license-templates (name)
+(defun license-templates--get-content (name)
   "Return license template by NAME."
   (license-templates--safe-get-info)
   (let ((content ""))
@@ -132,7 +132,7 @@
    (list (completing-read "License template: "
                           (license-templates-names)
                           nil t)))
-  (insert (license-templates name)))
+  (insert (license-templates--get-content name)))
 
 (provide 'license-templates)
 ;;; license-templates.el ends here
