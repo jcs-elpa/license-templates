@@ -72,7 +72,7 @@
   "Form license data by NAME, URL, CONTENT."
   (list :name name :url url :content content))
 
-(defun license-templates--get-content (url)
+(defun license-templates--get-content-by-url (url)
   "Get the content by license URL."
   (let ((license-json (license-templates--url-to-json url))
         (content ""))
@@ -90,7 +90,7 @@
           ('key (setq name val))  ; key is the name.
           ('url
            (setq url val)
-           (setq content (license-templates--get-content url))))))
+           (setq content (license-templates--get-content-by-url url))))))
     (license-templates--form-data name url content)))
 
 (defun license-templates--get-info ()
@@ -116,7 +116,7 @@
     (setq license-templates--names (reverse license-templates--names)))
   license-templates--names)
 
-(defun license-templates--get-content (name)
+(defun license-templates--get-content-by-name (name)
   "Return license template by NAME."
   (license-templates--safe-get-info)
   (let ((content ""))
@@ -132,7 +132,7 @@
    (list (completing-read "License template: "
                           (license-templates-names)
                           nil t)))
-  (insert (license-templates--get-content name)))
+  (insert (license-templates--get-content-by-name name)))
 
 (provide 'license-templates)
 ;;; license-templates.el ends here
