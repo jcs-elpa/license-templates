@@ -41,6 +41,11 @@
   :group 'tool
   :link '(url-link :tag "Repository" "https://github.com/jcs-elpa/license-templates"))
 
+(defcustom license-templates-filename "LICENSE"
+  "Filename when creating new license file."
+  :type 'string
+  :group 'license-templates)
+
 (defvar license-templates--names nil
   "List of names of available templates.")
 
@@ -133,6 +138,22 @@
                           (license-templates-names)
                           nil t)))
   (insert (license-templates--get-content-by-name name)))
+
+;;;###autoload
+(defun license-templates-new-file (name &optional dir)
+  "Create a license file with NAME in DIR."
+  (interactive
+   (list (completing-read "License template: "
+                          (license-templates-names)
+                          nil t)
+         (if current-prefix-arg
+             (read-directory-name "Creat license in directory: ")
+           default-directory)))
+  (let ((file (expand-file-name license-templates-filename dir)))
+    (when (file-exists-p file)
+      (user-error "Can't create '%s', because it already exists"
+                  (abbreviate-file-name file)))
+    (write-region (license-templates--get-content-by-name name) nil file)))
 
 (provide 'license-templates)
 ;;; license-templates.el ends here
