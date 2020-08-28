@@ -1,9 +1,0 @@
-# ignore these directories.
-/.git
-/recipes
-/test
-license-templates-pkg.el
-license-templates-autoloads.el
-
-# ignore generated files.
-*.elc
