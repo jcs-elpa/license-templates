@@ -10,7 +10,13 @@ An Emacs package for creating LICENSE file using GitHub API.
 
 ## Usage
 
-You can call the following function to insert the license content/template.
+You can call below command to create a new license file.
+
+```
+M-x license-templates-new-file
+```
+
+Or you can call below command to insert the license content to current buffer.
 
 ```
 M-x license-templates-insert
