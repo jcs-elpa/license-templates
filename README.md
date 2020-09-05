@@ -8,6 +8,19 @@ An Emacs package for creating LICENSE file using GitHub API.
 
 * https://developer.github.com/v3/licenses/
 
+## Important Notice
+
+You might have noticed that GPL-3.0 License is not being displayed
+on the right just below Readme where it should be displayed. You
+might therefore think that this package fails miserably at its very
+job because the LICENSE file that it puts into the repository is
+what is supposed to cause the notice to appear. The fact that this
+does not appear to happen even for the repository of this package
+itself is concerning but don't worry; it is actually [Github/licensee](https://github.com/licensee/licensee)
+that is triping over the name of this package. Unless your package's
+name also begins with license- it in all likelihood won't be affected.
+See [licensee/#457](https://github.com/licensee/licensee/issues/457).
+
 ## Usage
 
 You can call below command to create a new license file.
@@ -21,19 +34,6 @@ Or you can call below command to insert the license content to current buffer.
 ```
 M-x license-templates-insert
 ```
-
-## License Notice
-
-You might have noticed that GPL-3.0 License is not being displayed
-on the right just below Readme where it should be displayed. You
-might therefore think that this package fails miserably at its very
-job because the LICENSE file that it puts into the repository is
-what is supposed to cause the notice to appear. The fact that this
-does not appear to happen even for the repository of this package
-itself is concerning but don't worry; it is actually [Github/licensee](https://github.com/licensee/licensee)
-that is triping over the name of this package. Unless your package's
-name also begins with license- it in all likelihood won't be affected.
-See [licensee/#457](https://github.com/licensee/licensee/issues/457).
 
 ## Contribution
 
