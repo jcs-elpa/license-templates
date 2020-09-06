@@ -147,7 +147,7 @@
                           (license-templates-names)
                           nil t)
          (if current-prefix-arg
-             (read-directory-name "Creat license in directory: ")
+             (read-directory-name "Create license in directory: ")
            default-directory)))
   (let ((file (expand-file-name license-templates-filename dir)))
     (when (file-exists-p file)
