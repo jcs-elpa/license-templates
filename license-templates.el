@@ -6,7 +6,7 @@
 ;; Author: Shen, Jen-Chieh <jcs090218@gmail.com>
 ;; Description: Create LICENSE using GitHub API.
 ;; Keyword: license api template
-;; Version: 0.1.2
+;; Version: 0.1.3
 ;; Package-Requires: ((emacs "24.3") (request "0.3.0"))
 ;; URL: https://github.com/jcs-elpa/license-templates
 
