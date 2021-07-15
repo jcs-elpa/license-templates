@@ -11,10 +11,10 @@ See [licensee/#457](https://github.com/licensee/licensee/issues/457).**
 
 ---
 
-[![Build Status](https://travis-ci.com/jcs-elpa/license-templates.svg?branch=master)](https://travis-ci.com/jcs-elpa/license-templates)
+[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![MELPA](https://melpa.org/packages/license-templates-badge.svg)](https://melpa.org/#/license-templates)
 [![MELPA Stable](https://stable.melpa.org/packages/license-templates-badge.svg)](https://stable.melpa.org/#/license-templates)
-[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![CI](https://github.com/jcs-elpa/license-templates/actions/workflows/test.yml/badge.svg)](https://github.com/jcs-elpa/license-templates/actions/workflows/test.yml)
 
 # license-templates
 > Create LICENSE using GitHub API.
