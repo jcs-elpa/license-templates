@@ -14,10 +14,11 @@ See [licensee/#457](https://github.com/licensee/licensee/issues/457).**
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![MELPA](https://melpa.org/packages/license-templates-badge.svg)](https://melpa.org/#/license-templates)
 [![MELPA Stable](https://stable.melpa.org/packages/license-templates-badge.svg)](https://stable.melpa.org/#/license-templates)
-[![CI](https://github.com/jcs-elpa/license-templates/actions/workflows/test.yml/badge.svg)](https://github.com/jcs-elpa/license-templates/actions/workflows/test.yml)
 
 # license-templates
 > Create LICENSE using GitHub API.
+
+[![CI](https://github.com/jcs-elpa/license-templates/actions/workflows/test.yml/badge.svg)](https://github.com/jcs-elpa/license-templates/actions/workflows/test.yml)
 
 An Emacs package for creating LICENSE file using GitHub API.
 
