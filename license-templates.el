@@ -4,11 +4,10 @@
 ;; Created date 2020-07-24 11:11:15
 
 ;; Author: Shen, Jen-Chieh <jcs090218@gmail.com>
-;; Description: Create LICENSE using GitHub API.
-;; Keyword: license api template
+;; URL: https://github.com/jcs-elpa/license-templates
 ;; Version: 0.1.3
 ;; Package-Requires: ((emacs "24.3") (request "0.3.0"))
-;; URL: https://github.com/jcs-elpa/license-templates
+;; Keywords: license api template
 
 ;; This file is NOT part of GNU Emacs.
 
