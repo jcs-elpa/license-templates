@@ -3,7 +3,7 @@
          "Create LICENSE using GitHub API")
 
 (website-url "https://github.com/jcs-elpa/license-templates")
-(keywords "license" "api" "template")
+(keywords "convenience" "license" "api" "template")
 
 (package-file "license-templates.el")
 
