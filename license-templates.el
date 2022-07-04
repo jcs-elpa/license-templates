@@ -7,7 +7,7 @@
 ;; URL: https://github.com/jcs-elpa/license-templates
 ;; Version: 0.1.3
 ;; Package-Requires: ((emacs "24.3") (request "0.3.0"))
-;; Keywords: license api template
+;; Keywords: convenience license api template
 
 ;; This file is NOT part of GNU Emacs.
 
