@@ -111,6 +111,7 @@
   "Get the license information without refreshing cache."
   (unless license-templates--info-list (license-templates--get-info)))
 
+;;;###autoload
 (defun license-templates-names ()
   "Return list of names of available license."
   (license-templates--safe-get-info)
