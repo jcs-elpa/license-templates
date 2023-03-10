@@ -12,6 +12,7 @@ See [licensee/#457](https://github.com/licensee/licensee/issues/457).**
 ---
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![JCS-ELPA](https://raw.githubusercontent.com/jcs-emacs/badges/master/elpa/v/license-templates.svg)](https://jcs-emacs.github.io/jcs-elpa/#/license-templates)
 [![MELPA](https://melpa.org/packages/license-templates-badge.svg)](https://melpa.org/#/license-templates)
 [![MELPA Stable](https://stable.melpa.org/packages/license-templates-badge.svg)](https://stable.melpa.org/#/license-templates)
 
