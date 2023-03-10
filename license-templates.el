@@ -1,6 +1,6 @@
 ;;; license-templates.el --- Create LICENSE using GitHub API  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2020  Shen, Jen-Chieh
+;; Copyright (C) 2020-2023  Shen, Jen-Chieh
 ;; Created date 2020-07-24 11:11:15
 
 ;; Author: Shen, Jen-Chieh <jcs090218@gmail.com>
@@ -113,7 +113,7 @@
   (unless license-templates--keys
     (dolist (data license-templates--info-list)
       (push (plist-get data :key) license-templates--keys))
-    (setq license-templates--keys (reverse license-templates--keys)))
+    (setq license-templates--keys (sort license-templates--keys #'string-lessp)))
   license-templates--keys)
 
 (defun license-templates--get-content-by-name (name)
