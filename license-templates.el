@@ -109,7 +109,14 @@
   (cond ((not (license-templates-request-completed-p))
          (user-error "Reuqest is not complete yet, please wait a while"))
         (t (unless license-templates--info-list
-             (license-templates--get-info)))))
+             (license-templates--get-info)
+             (license-templates--wait-requests)))))
+
+(defun license-templates--wait-requests ()
+  "Wait until the request completed."
+  (while (or (zerop license-templates--requested)
+             (not (license-templates-request-completed-p)))
+    (sleep-for 1)))
 
 ;;;###autoload
 (defun license-templates-keys ()
