@@ -116,6 +116,7 @@
   "Get the license information without refreshing cache."
   (cond ((and (not (zerop license-templates--requested))
               (not (license-templates-request-completed-p)))
+         (message "? %s %s" license-templates--requested (length license-templates--data))
          (user-error "Reuqest is not complete yet, please wait a while"))
         (t (unless license-templates--data
              (license-templates--get-info)
