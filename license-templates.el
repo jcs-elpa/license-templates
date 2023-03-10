@@ -121,7 +121,7 @@
   (license-templates--safe-get-info)
   (let ((content ""))
     (dolist (data license-templates--info-list)
-      (when (equal (plist-get data :name) name)
+      (when (equal (plist-get data :key) name)
         (setq content (plist-get data :content))))
     content))
 
