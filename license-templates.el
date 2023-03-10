@@ -69,10 +69,11 @@
 
 (defun license-templates--sort-data ()
   "Sort data once."
-  (sort license-templates--data
-        (lambda (data1 data2)
-          (string-lessp (license-templates-2str (plist-get data1 :key))
-                        (license-templates-2str (plist-get data2 :key))))))
+  (setq license-templates--data
+        (sort license-templates--data
+              (lambda (data1 data2)
+                (string-lessp (license-templates-2str (plist-get data1 :key))
+                              (license-templates-2str (plist-get data2 :key)))))))
 
 ;;; Core
 
