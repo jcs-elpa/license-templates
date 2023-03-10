@@ -130,7 +130,7 @@
   "Insert license for NAME."
   (interactive
    (list (completing-read "License template: "
-                          (license-templates-names)
+                          (license-templates-keys)
                           nil t)))
   (insert (license-templates--get-content-by-name name)))
 
@@ -139,7 +139,7 @@
   "Create a license file with NAME in DIR."
   (interactive
    (list (completing-read "License template: "
-                          (license-templates-names)
+                          (license-templates-keys)
                           nil t)
          (if current-prefix-arg
              (read-directory-name "Create license in directory: ")
