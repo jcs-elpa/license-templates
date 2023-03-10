@@ -101,8 +101,8 @@
 
 (defun license-templates-request-completed-p ()
   "Return non-nil if request is completed."
-  (and (not (zerop license-templates--requested))
-       (= license-templates--requested license-templates--request-count)))
+  (or (zerop license-templates--requested)
+      (= license-templates--requested license-templates--request-count)))
 
 (defun license-templates--safe-get-info ()
   "Get the license information without refreshing cache."
