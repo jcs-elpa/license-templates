@@ -99,9 +99,14 @@
                  (license-templates--add-data-with-content .key .name .url)))
              data)))))
 
+(defun license-templates-request-completed-p ()
+  "Return non-nil if request is completed."
+  (and (not (zerop license-templates--requested))
+       (= license-templates--requested license-templates--request-count)))
+
 (defun license-templates--safe-get-info ()
   "Get the license information without refreshing cache."
-  (cond ((not (= license-templates--requested license-templates--request-count))
+  (cond ((not (license-templates-request-completed-p))
          (user-error "Reuqest is not complete yet, please wait a while"))
         (t (unless license-templates--info-list
              (license-templates--get-info)))))
