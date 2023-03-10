@@ -34,6 +34,8 @@
 (require 'json)
 (require 'url)
 
+(require 'request)
+
 (defgroup license-templates nil
   "Create LICENSE using GitHub API."
   :prefix "license-templates-"
@@ -45,81 +47,74 @@
   :type 'string
   :group 'license-templates)
 
-(defvar license-templates--names nil
-  "List of names of available templates.")
+(defvar license-templates-api-key ""
+  "API key to get rid of the limit")
+
+(defvar license-templates--keys nil
+  "List of kesy of available templates.")
 
 (defvar license-templates--info-list nil
   "List of license data information.")
 
+(defvar license-templates--request-count 0
+  "Count the completed request.")
+
+(defvar license-templates--requested 0
+  "The requested request.")
+
 (defvar url-http-end-of-headers)
-
-;;; Util
-
-(defun license-templates--url-to-string (url)
-  "Get data by URL and convert it to string."
-  (with-current-buffer (url-retrieve-synchronously url)
-    (set-buffer-multibyte t)
-    (prog1 (buffer-substring (1+ url-http-end-of-headers) (point-max))
-      (kill-buffer))))
-
-(defun license-templates--url-to-json (url)
-  "Get data by URL and convert it to JSON."
-  (with-current-buffer (url-retrieve-synchronously url)
-    (set-buffer-multibyte t)
-    (goto-char url-http-end-of-headers)
-    (prog1 (let ((json-array-type 'list)) (json-read))
-      (kill-buffer))))
 
 ;;; Core
 
-(defun license-templates--form-data (name url content)
-  "Form license data by NAME, URL, CONTENT."
-  (list :name name :url url :content content))
+(defun license-templates--form-data (key name url content)
+  "Form license data by KEY, NAME, URL, CONTENT."
+  (list :key key :name name :url url :content content))
 
-(defun license-templates--get-content-by-url (url)
-  "Get the content by license URL."
-  (let ((license-json (license-templates--url-to-json url))
-        (content ""))
-    (dolist (data license-json)
-      (let ((key (car data)) (val (cdr data)))
-        (when (equal key 'body) (setq content val))))
-    content))
-
-(defun license-templates--collect-data (lice)
-  "Collect data from license data (LICE)."
-  (let (name url content)
-    (dolist (data lice)
-      (let ((key (car data)) (val (cdr data)))
-        (cl-case key
-          ('key (setq name val))  ; key is the name.
-          ('url
-           (setq url val)
-           (setq content (license-templates--get-content-by-url url))))))
-    (license-templates--form-data name url content)))
+(defun license-templates--add-data-with-content (key name url)
+  "Add data KEY, NAME, and URL, with content."
+  (request url
+    :type "GET"
+    :parser 'json-read
+    :success
+    (cl-function
+     (lambda (&key data &allow-other-keys)
+       (let-alist data
+         (cl-incf license-templates--request-count)
+         (push (license-templates--form-data key name url .body) license-templates--info-list))))))
 
 (defun license-templates--get-info ()
   "Get all necessary information."
-  (setq license-templates--info-list '())
-  (let ((licenses-json
-         (license-templates--url-to-json "https://api.github.com/licenses")))
-    (dolist (lice licenses-json)
-      (push (license-templates--collect-data lice)
-            license-templates--info-list)))
-  (setq license-templates--info-list (reverse license-templates--info-list)))
+  (setq license-templates--info-list nil
+        license-templates--request-count 0
+        license-templates--requested 0)
+  (request "https://api.github.com/licenses"
+    :type "GET"
+    :parser 'json-read
+    :success
+    (cl-function
+     (lambda (&key data &allow-other-keys)
+       (setq license-templates--requested (length data))
+       (mapc (lambda (json)
+               (let-alist json
+                 (license-templates--add-data-with-content .key .name .url)))
+             data)))))
 
 (defun license-templates--safe-get-info ()
   "Get the license information without refreshing cache."
-  (unless license-templates--info-list (license-templates--get-info)))
+  (cond ((not (= license-templates--requested license-templates--request-count))
+         (user-error "Reuqest is not complete yet, please wait a while"))
+        (t (unless license-templates--info-list
+             (license-templates--get-info)))))
 
 ;;;###autoload
-(defun license-templates-names ()
-  "Return list of names of available license."
+(defun license-templates-keys ()
+  "Return list of keys of available license."
   (license-templates--safe-get-info)
-  (unless license-templates--names
+  (unless license-templates--keys
     (dolist (data license-templates--info-list)
-      (push (plist-get data :name) license-templates--names))
-    (setq license-templates--names (reverse license-templates--names)))
-  license-templates--names)
+      (push (plist-get data :key) license-templates--keys))
+    (setq license-templates--keys (reverse license-templates--keys)))
+  license-templates--keys)
 
 (defun license-templates--get-content-by-name (name)
   "Return license template by NAME."
