@@ -101,8 +101,7 @@
 
 (defun license-templates-request-completed-p ()
   "Return non-nil if request is completed."
-  (or (zerop license-templates--requested)
-      (= license-templates--requested license-templates--request-count)))
+  (= license-templates--requested license-templates--request-count))
 
 (defun license-templates--safe-get-info ()
   "Get the license information without refreshing cache."
@@ -113,7 +112,7 @@
              (license-templates--wait-requests)))))
 
 (defun license-templates--wait-requests ()
-  "Wait until the request completed."
+  "Wait until all requests are completed."
   (while (or (zerop license-templates--requested)
              (not (license-templates-request-completed-p)))
     (sleep-for 1)))
