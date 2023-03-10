@@ -61,6 +61,19 @@
 
 (defvar url-http-end-of-headers)
 
+;;; Util
+
+(defun license-templates-2str (obj)
+  "Convert OBJ to string."
+  (format "%s" obj))
+
+(defun license-templates--sort-data ()
+  "Sort data once."
+  (sort license-templates--data
+        (lambda (data1 data2)
+          (string-lessp (license-templates-2str (plist-get data1 :key))
+                        (license-templates-2str (plist-get data2 :key))))))
+
 ;;; Core
 
 (defun license-templates--form-data (key name url content)
@@ -83,6 +96,7 @@
   (setq license-templates--data nil
         license-templates--requested 0)
   (request "https://api.github.com/licenses"
+    :sync t
     :type "GET"
     :parser 'json-read
     :success
@@ -104,7 +118,8 @@
          (user-error "Reuqest is not complete yet, please wait a while"))
         (t (unless license-templates--data
              (license-templates--get-info)
-             (license-templates--wait-requests)))))
+             (license-templates--wait-requests)
+             (license-templates--sort-data)))))
 
 (defun license-templates--wait-requests ()
   "Wait until all requests are completed."
