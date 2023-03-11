@@ -47,9 +47,6 @@
   :type 'string
   :group 'license-templates)
 
-(defvar license-templates-api-key ""
-  "API key to get rid of the limit")
-
 (defvar license-templates--keys nil
   "List of kesy of available templates.")
 
