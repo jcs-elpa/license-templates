@@ -4,7 +4,7 @@ might therefore think that this package fails miserably at its very
 job because the LICENSE file that it puts into the repository is
 what is supposed to cause the notice to appear. The fact that this
 does not appear to happen even for the repository of this package
-itself is concerning but don't worry; it is actually [Github/licensee](https://github.com/licensee/licensee)
+itself is concerning but don't worry; it is actually [GitHub/licensee](https://github.com/licensee/licensee)
 that is triping over the name of this package. Unless your package's
 name also begins with license- it in all likelihood won't be affected.
 See [licensee/#457](https://github.com/licensee/licensee/issues/457).**
