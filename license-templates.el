@@ -1,6 +1,6 @@
 ;;; license-templates.el --- Create LICENSE using GitHub API  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2020-2024  Shen, Jen-Chieh
+;; Copyright (C) 2020-2025  Shen, Jen-Chieh
 ;; Created date 2020-07-24 11:11:15
 
 ;; Author: Shen, Jen-Chieh <jcs090218@gmail.com>
