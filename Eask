@@ -1,3 +1,5 @@
+;; -*- mode: eask; lexical-binding: t -*-
+
 (package "license-templates"
          "0.1.3"
          "Create LICENSE using GitHub API")
